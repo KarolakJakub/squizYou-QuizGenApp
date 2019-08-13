@@ -4,7 +4,6 @@ import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
 import Home from "./Home";
-import { QuizProvider } from "./contexts/QuizContext";
 import { getUserNameByUniqueId } from './services/AuthService'
 import {
   BrowserRouter as Router,
@@ -13,8 +12,7 @@ import {
   Redirect
 } from "react-router-dom";
 import QuizesGenList from './components/quizGenerator/QuizesGenList'
-// import LandingPage from "./components/LandingPage/LandingPage";
-// import LogoutButton from './components/Navbar/LogoutButton'
+
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -51,7 +49,7 @@ class App extends Component {
 
   render() {
     return (
-      <QuizProvider>
+
 
  
         <Router>
@@ -73,7 +71,7 @@ class App extends Component {
             </Switch>
           </div>
         </Router>
-      </QuizProvider>
+
     );
   }
 }

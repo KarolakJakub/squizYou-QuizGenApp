@@ -1,5 +1,5 @@
 import React from 'react'
-import { QuizContext } from '../../contexts/QuizContext'
+
 import { fetchQuiz, addNewQuiz, deleteQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, Link, Redirect, withRouter } from "react-router-dom";
 import { Dimmer, Loader, Button } from 'semantic-ui-react'
@@ -12,9 +12,6 @@ import ScrollUpButton from "react-scroll-up-button";
 
 class QuizesGenList extends React.Component {
 
-
-    static contextType = QuizContext
-
     state = {
         quizes: [],
         listIsLoading: false
@@ -24,7 +21,6 @@ class QuizesGenList extends React.Component {
         this.setState({ listIsLoading: true })
         const quizesRef = fetchQuiz(quizes => {
 
-            this.context.setQuizes(quizes)
 
             this.setState({ quizes, listIsLoading: false })
         })
@@ -39,6 +35,12 @@ class QuizesGenList extends React.Component {
 
     handleRemoveQuiz(uniqueId) {
         deleteQuiz(uniqueId)
+
+        this.setState({ listIsLoading: true })
+        const quizesRef = fetchQuiz(quizes => {
+            this.setState({ quizes, listIsLoading: false })
+        })
+
     }
 
 
