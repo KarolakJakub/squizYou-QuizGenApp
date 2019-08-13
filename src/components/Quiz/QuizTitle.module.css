@@ -1,0 +1,558 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.quizTitles {
+  margin-top: 3%;
+  text-align: center;
+}
+
+.quizTitleName {
+  border-bottom: 1px solid grey;
+  margin-bottom: 1%;
+  word-wrap: break-word;
+}
+
+.quizName {
+  padding-top: 1.1em;
+  width: 60vw;
+  text-align: center;
+  color: grey;
+  padding: 3% 0 2% 0;
+  word-wrap: break-word;
+}
+
+.currentQuestion {
+  text-align: center;
+  color: blue;
+}
+
+.answerWrapper {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.answer {
+  padding: 2% 2%;
+  height: 30%;
+  font-size: 1em;
+  width: 60rem;
+}
+
+.questionCard {
+  padding-top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.possibleAnswer {
+  display: block;
+  margin: 0;
+  padding: 0.5%;
+  color: black;
+  width: 60vw;
+  height: 100%;
+  font-size: 1em;
+}
+
+.button {
+  margin: 0;
+  padding: 2%;
+  border: 0;
+  border-left: 10px solid green;
+  border-top-left-radius: 1em;
+  color: black;
+  width: 60vw;
+  height: 100%;
+  font-size: 1em;
+  box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+}
+
+.boxButton {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  height: 40%;
+}
+
+.buttonQuestion,
+.arrowButtonQuestion,
+.doubleArrowButtonQuestion {
+  background-color: #e0e0e0;
+  color: black;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 3em;
+  height: 2.5em;
+}
+
+.buttonChooseQuiz {
+  width: 10em;
+  height: 5em;
+}
+
+.pagination {
+  bottom: 1%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100vw;
+}
+
+.arrowButtonQuestion {
+  font-weight: bolder;
+  width: 6em;
+  margin-right: 0.25%;
+  margin-left: 0.25%;
+}
+
+.doubleArrowButtonQuestion {
+  font-weight: bolder;
+  width: 8em;
+  margin-right: 0.25%;
+  margin-left: 0.25%;
+}
+
+.buttonQuizEnd {
+  background-color: rgb(255, 255, 153);
+  padding: 1%;
+  margin: 1% 30%;
+  border: 0.1em solid #ffffff;
+  font-size: 1em;
+  border-radius: 1em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  font-size: 1.5em !important;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 12em;
+  height: 5em;
+  text-align: center;
+}
+
+.buttonQuestionNumber:disabled {
+  background-color: grey;
+  color: white;
+}
+
+.buttonClicked {
+  padding: 20px 20px;
+  margin: 20px 20px;
+  background-color: grey;
+}
+
+.quizTimer {
+  float: right;
+  margin: 1em 2em;
+  font-size: 2em;
+}
+
+.score {
+  color: grey;
+  font-weight: bolder;
+  margin-top: 5%;
+  font-size: 5rem;
+  text-align: center;
+}
+
+.arrowImage {
+  height: 100px;
+  width: 100px;
+}
+
+.arrowImageBox:active {
+  background-color: rgb(255, 255, 153);
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.startQuizButton {
+  font-size: 2em !important;
+  background-color: rgb(255, 255, 153);
+  color: black;
+  border: 3px solid white;
+  padding: 2% 2%;
+  height: 30%;
+  width: 50vw;
+}
+
+.navigationButton {
+  background-color: rgb(255, 255, 153);
+  padding: 1%;
+  margin: 1%;
+  border: 0.1em solid #ffffff;
+  border-radius: 2em;
+  text-decoration: none;
+  color: grey;
+  font-weight: 300;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  width: 10em;
+  height: 3em;
+}
+
+.navigationButton:hover {
+  background-color: grey;
+  color: #ffffff;
+}
+
+.finishQuiz {
+  bottom: 2%;
+  right: 12%;
+  position: fixed;
+  background-color:green;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-decoration: none;
+  font-size: 0.875rem;
+  color: white;
+  font-weight: 500;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  z-index: 3;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+  width: 15em;
+  height: 4.5em;
+} 
+
+.startNewQuiz {
+  margin-top: 12%;
+  margin-left: 42vw;
+  margin-right: 42vw;
+  background-color: #e0e0e0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-decoration: none;
+  font-size: 1rem;
+  color: black;
+  font-weight: 500;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  text-align: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+  width: 16em;
+  height: 5em;
+}
+
+.startNewQuiz:hover {
+background-color: grey;
+color: #FFFFFF;
+}
+
+.finishQuiz:hover {
+  background-color: grey;
+  color: #FFFFFF;
+}
+
+@media (max-width: 480px) {
+
+  .score {
+    top: 25%;
+    margin: 0;
+    margin-right: 15vw;
+    margin-left: 15vw;
+    color: grey;
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+    padding: 3%;
+    width: 70vw;
+  }
+
+  .quizTitleName {
+    width: 100vw;
+    padding: 3%;
+    font-size: 1.75em;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    word-wrap: break-word;
+  }
+
+  .quizName {
+    width: 100vw;
+    padding: 3%;
+    font-size: 1.5em;
+    text-align: center;
+    word-wrap: break-word;
+  }
+
+  .buttonQuestion {
+    float: inline-end;
+    background-color: #e0e0e0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    letter-spacing: 0.02857em;
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: black;
+    font-weight: 500;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 3em;
+    height: 3em;
+  }
+  .buttonQuizEnd {
+    margin: 1% 1%;
+  }
+
+  .questionCard {
+    height: 100%;
+  }
+
+  .possibleAnswer {
+    width: 100vw;
+    padding: 2%;
+    height: 100%;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  
+  .button {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.75em;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    word-wrap: break-word;
+    padding: 2%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .arrowButtonQuestion {
+    float: inline-end;
+    background-color: #e0e0e0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    letter-spacing: 0.02857em;
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: black;
+    font-weight: bold;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 5em;
+    height: 3em;
+  }
+
+  .doubleArrowButtonQuestion {
+    float: inline-end;
+    background-color: #e0e0e0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    letter-spacing: 0.02857em;
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: black;
+    font-weight: bold;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 6em;
+    height: 3em;
+  }
+
+  .pagination {
+    bottom: 0;
+    margin-top: 2%;
+    right: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 2.9em;
+    opacity: 0.9;
+  }
+
+  .finishQuiz {
+    position: fixed;
+    bottom: 3.5em;
+    opacity: 0.9;
+    right: 0;
+    left: 0;
+    height: 3em;
+    min-width: 100%;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.14);
+    border: 0;
+  }
+
+
+  .finishQuizWrap {
+    height: 15vh;
+    position: relative;
+  }
+
+  .startNewQuizWrap {
+    width: 70vw;
+    margin-right: 15vw;
+    margin-left: 15vw;
+    padding: 3%;
+    text-align: center;
+  }
+
+  .startNewQuiz {
+      margin-right: 15vw;
+      margin-left: 7vw;
+    text-align: center;
+
+  }
+
+  .answerWrapper {
+    margin: 0;
+  }
+
+  .answerWrapper ul {
+    width: 100vw;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1120px) {
+
+  .score {
+    top: 25%;
+    margin: 0;
+    margin-right: 15vw;
+    margin-left: 15vw;
+    color: grey;
+    font-weight: bolder;
+    font-size: 2em;
+    text-align: center;
+    padding: 3%;
+    width: 70vw;
+  }
+
+  .questionCard {
+    height: 100%;
+    margin-bottom: 4em;
+  }
+
+  .possibleAnswer {
+    width: 100vw;
+    padding: 2%;
+    height: 100%;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .button {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 0.75em;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    word-wrap: break-word;
+    padding: 2%;
+    height: 100%;
+    width: 100%;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+
+  .pagination {
+    bottom: 0;
+    margin: 2% 0 0 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 3em;
+    opacity: 0.9;
+  }
+  
+  .finishQuiz {
+    position: fixed;
+    bottom: 3.5em;
+    opacity: 0.9;
+    right: 0;
+    left: 0;
+    min-width: 100%;
+    height: 3em;
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.14);
+    border: 0;
+  }
+
+
+  .finishQuizWrap {
+    height: 15vh;
+    position: relative;
+  }
+}

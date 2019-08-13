@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    width: 100vw;
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  .welcomeTitle {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+  }
+
+.titlePage {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    text-align: center;
+    padding-top: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    color: grey;
+}
+
+.titlePage h1 {
+    font-size: 10em;
+    text-align: center;
+    padding: 0;
+}
+
+.titlePage h2 {
+    font-size: 7em;
+    text-align: center;
+    padding: 3%;
+}
+
+.infoOnMainPage {
+    padding: 1%;
+    font-size: 2em;
+    text-align: center;
+}
+
+.infoOnMainPageLoggedIn {
+    padding: 1%;
+    font-size: 1.25em;
+    text-align: center;
+    width: 70vh;
+}
+
+.titlePageLoggedIn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2%;
+    padding-right: 5%;
+    padding-left: 5%;
+    color: grey;
+}
+
+.titlePageLoggedIn h1 {
+    font-size: 10em;
+    text-align: center;
+    padding: 0;
+}
+
+.titlePageLoggedIn h2 {
+    font-size: 7em;
+    text-align: center;
+    padding: 3%;
+}
+
+@media (max-width: 960px) {
+    .titlePage {
+      display: flex;
+      padding: 10% 10% 25% 10%;
+    }
+
+    .titlePage h1 {
+        font-size: 6em;
+        text-align: center;
+        padding: 0;
+    }
+
+    .titlePage h2 {
+        display: none;
+    }
+
+    .titlePage {
+        display: flex; 
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2%;
+        padding-right: 5%;
+        padding-left: 5%;
+        color: grey;
+    }
+
+    .titlePageLoggedIn h1 {
+        display: none;
+    }
+    
+    .titlePageLoggedIn h2 {
+        display: none;
+    }
+
+    .infoOnMainPageLoggedIn {
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .titlePage {
+      display: flex;
+      padding: 15% 4% 15% 4%;
+    }
+
+    .titlePage h1 {
+        font-size: 5em;
+        text-align: center;
+        padding: 0;
+    }
+
+    .titlePage h2 {
+        display: none;
+    }
+
+    .infoOnMainPage {
+        display: none;
+    }
+
+    .titlePage {
+        display: flex; 
+        flex-direction: column;
+        text-align: center;
+        padding-top: 2%;
+        padding-right: 5%;
+        padding-left: 5%;
+        color: grey;
+    }
+
+
+    .titlePageLoggedIn h1 {
+        display: none;
+    }
+    
+    .titlePageLoggedIn h2 {
+        display: none;
+    }
+
+    .infoOnMainPageLoggedIn {
+        padding: 0;
+        width: 50vh;
+    }
+}

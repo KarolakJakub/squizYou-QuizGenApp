@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 3;
+  width: 100%;
+  height: 9vh;
+  /* box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6); */
+  padding: 0;
+  margin-bottom: 2%;
+}
+
+.navbarA {
+  color: grey;
+  font-family: "Roboto", sans-serif;
+  list-style-type: none;
+  font-size: 1.45em;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0;
+  padding-bottom: 10px;
+  text-align: center;
+  flex-basis: 25%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbarA:hover {
+  padding-bottom: 0;
+  cursor: pointer;
+  border-bottom: 10px solid green;
+ 
+}
+
+.activeLink {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 0;
+  border-bottom: 10px solid green;
+}
+
+.navbarImg {
+  width: 4vw;
+  height: auto;
+  flex-basis: 25%;
+}
+
+@media (max-width: 960px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 3;
+    width: 100%;
+    height: 11vh;
+    padding: 0;
+  }
+  .navbarA {
+    color: grey;
+    list-style-type: none;
+    font-size: 1.25em;
+    padding: 0 5%;
+    text-align: center;
+    flex-basis: 25%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    text-decoration: none;
+  }
+  .navbarImg {
+    width: 10vw;
+    height: auto;
+    flex-basis: 25%;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    z-index: 3;
+    width: 100vw;
+    height: 10vh;
+    padding: 0;
+  }
+  .navbarA {
+    color: grey;
+    list-style-type: none;
+    font-size: 1.10em;
+    padding: 0 2%;
+    text-align: center;
+    flex-basis: 25%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    text-decoration: none;
+  }
+  .navbarImg {
+    width: 15vw;
+    height: auto;
+    flex-basis: 25%;
+  }
+}

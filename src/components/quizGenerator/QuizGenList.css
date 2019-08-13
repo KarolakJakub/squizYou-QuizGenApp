@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    width: 100vw;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+ .addQuizButton {
+    bottom: 2%;
+    right: 15%;
+    position: fixed;
+    background-color: #3f51b5;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: white;
+    font-weight: 500;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12);
+    width: 15em;
+    height: 4.5em;
+ } 
+
+ .addQuizButton:hover {
+    background-color: grey;
+    color: #FFFFFF;
+ }
+
+.listWrapper {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 7%;      
+    width: 60vw;
+    height: 100%;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    text-align: center;
+}
+
+.genListWrapper {
+    display: flex;
+    flex-direction: column;       
+    width: 60vw;
+    height: 100%;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    text-align: center;
+}
+
+.genListWrapper:last-child {
+    margin-bottom: 5%;
+}
+
+.listQuiz {
+    font-size: 0.875rem;
+    color: grey;
+    font-size: 1.5em;
+    margin-top: 1%;
+    padding: 1%;
+    list-style-type: none;
+    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+    border-left: 10px solid green;
+    border-top-left-radius: 1em;
+}
+
+.listQuiz:hover {
+    
+    transform: scale(1.1);
+
+}
+
+.buttonsWrap {
+    margin-top: 2%;
+    left: 0;
+}
+
+.linkStyles {
+    color: grey;
+}
+
+.startQuizButton {
+    color: grey;
+    width: 60vw;
+    background-color: white;
+    border: 0;
+    height: 4.5em;
+    box-shadow: 0px 0px 38px -21px rgba(0, 0, 0, 0.6);
+    border-left: 10px solid green;
+    border-top-left-radius: 1em;
+}
+
+.startQuizList {
+    color: grey;
+    z-index: 1;
+    
+    font-size: 1.5em;
+    padding: 1%;
+    height: 5em;
+    text-align: center;
+    list-style-type: none;
+}
+
+.startQuizList:hover {
+    
+    transform: scale(1.1);
+}
+
+@media (max-width: 960px) {
+    
+   .addQuizButton {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        min-width: 100%;
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.14);
+        border: 0;
+        opacity: 0.9;
+   }
+
+   .listWrapper {
+      margin: 0;
+      margin-bottom: 15%;
+   }
+
+   .genListWrapper {
+       margin: 0
+   }
+
+   .listQuiz {
+       margin-top: 2%;
+       width: 100vw;
+       height: 4em;
+       text-align: center;
+   }
+
+   .startQuizButton {
+       margin: 0;
+       width: 100vw;
+   }
+
+   .quizName {
+       margin-bottom: 25em;
+   }
+
+   
+}
