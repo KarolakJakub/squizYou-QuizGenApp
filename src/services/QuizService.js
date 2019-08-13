@@ -17,6 +17,8 @@ export const fetchQuiz = (callback) => {
 
 export const addNewQuiz = (quizId, userId) => {
 
+
+
     const newQuestionCard =
     {
         "id": `${quizId}`,

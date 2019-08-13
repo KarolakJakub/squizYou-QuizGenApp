@@ -29,16 +29,21 @@ class QuizesGenList extends React.Component {
     }
 
     addNewQuizAndFollow(quizId, userId) {
-        const newUniqueId = addNewQuiz(quizId)
-        this.props.history.push(`/quizes-gen-list/${newUniqueId}`)
+        if (userId === undefined) {
+            alert('Musisz być zalogowany żeby tworzyć quizy.')
+            return
+        } else {
+            const newUniqueId = addNewQuiz(quizId)
+            this.props.history.push(`/quizes-gen-list/${newUniqueId}`)
+        }
     }
 
     handleRemoveQuiz(uniqueId) {
         deleteQuiz(uniqueId)
 
-        const newQuizes = this.state.quizes.filter( quiz => quiz.uniqueId !== uniqueId)
+        const newQuizes = this.state.quizes.filter(quiz => quiz.uniqueId !== uniqueId)
 
-        this.setState({...this.state, quizes: newQuizes})
+        this.setState({ ...this.state, quizes: newQuizes })
 
     }
 
@@ -47,25 +52,25 @@ class QuizesGenList extends React.Component {
     render() {
 
         const { listIsLoading } = this.state
-console.log(this.props.uniqueUserId)
+        console.log(this.props.uniqueUserId)
         return <div>
             {listIsLoading ?
-      <Dimmer active>
-        <Loader size='massive'>Proszę czekać...</Loader>
-      </Dimmer>
+                <Dimmer active>
+                    <Loader size='massive'>Proszę czekać...</Loader>
+                </Dimmer>
 
-     :
-                
+                :
+
                 <div className='listWrapper'>
                     <ul>
                         {this.state.quizes.map(quiz => {
                             return <li className='listQuiz' key={quiz.uniqueId}>{quiz.title}, liczba pytań: {quiz.questions.length}
                                 <div className='buttonsWrap'>
-                                <Button.Group> 
+                                    <Button.Group>
                                         <Link to={`/quizes-gen-list/${quiz.uniqueId}`}>
-                                        <Button positive>
-                                            EDYTUJ
-                                        </Button> 
+                                            <Button positive>
+                                                EDYTUJ
+                                        </Button>
                                         </Link>
                                         <Button.Or />
                                         <Button onClick={() => this.handleRemoveQuiz(quiz.uniqueId)}>
@@ -79,7 +84,7 @@ console.log(this.props.uniqueUserId)
                     <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1, this.state.uniqueUserId)}>NOWY QUIZ</button>
                     <ScrollUpButton />
                 </div>
-             
+
             } </div>
     }
 }
