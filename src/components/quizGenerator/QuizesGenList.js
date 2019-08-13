@@ -36,10 +36,9 @@ class QuizesGenList extends React.Component {
     handleRemoveQuiz(uniqueId) {
         deleteQuiz(uniqueId)
 
-        this.setState({ listIsLoading: true })
-        const quizesRef = fetchQuiz(quizes => {
-            this.setState({ quizes, listIsLoading: false })
-        })
+        const newQuizes = this.state.quizes.filter( quiz => quiz.uniqueId !== uniqueId)
+
+        this.setState({...this.state, quizes: newQuizes})
 
     }
 
