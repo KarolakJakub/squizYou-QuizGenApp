@@ -29,7 +29,7 @@ class App extends Component {
 
     getUserNameByUniqueId(uniqueId, (userName => {
 
-    
+
       this.setState({
         isLoggedIn: true,
         uniqueId: uniqueId,
@@ -39,7 +39,7 @@ class App extends Component {
 
   }
 
-  onLogout(){
+  onLogout() {
     this.setState({
       isLoggedIn: false,
       uniqueId: '',
@@ -51,26 +51,28 @@ class App extends Component {
     return (
 
 
- 
-        <Router>
-          <div>
-            <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}/>
-            <Switch>
-              <Route exact path="/" render={(props) =>
-                <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
-              } />
-              {/* {this.state.isLoggedIn ? 
+
+      <Router>
+        <div>
+          <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)} />
+          <Switch>
+            <Route exact path="/" render={(props) =>
+              <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
+            } />
+            {/* {this.state.isLoggedIn ? 
               <> */}
-              <Route exact path="/quizes-gen-list" component={QuizesGenList} />
-              <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
-              <Route path="/quizlist" component={QuizList} />
-              <Route path="/quiz/:id" component={Quiz} />
-              {/* </>:null} */}
-              <Redirect from="/home" to="/" />
-              <Route component={NoMatch} />
-            </Switch>
-          </div>
-        </Router>
+            <Route exact path="/quizes-gen-list" render={(props) =>
+              <QuizesGenList  {...props} uniqueUserId={this.state.uniqueId}
+              />} />
+            <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
+            <Route path="/quizlist" component={QuizList} />
+            <Route path="/quiz/:id" component={Quiz} />
+            {/* </>:null} */}
+            <Redirect from="/home" to="/" />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </Router>
 
     );
   }

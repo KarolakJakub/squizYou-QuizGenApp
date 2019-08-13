@@ -28,7 +28,7 @@ class QuizesGenList extends React.Component {
         return () => { quizesRef.off('value') }
     }
 
-    addNewQuizAndFollow(quizId) {
+    addNewQuizAndFollow(quizId, userId) {
         const newUniqueId = addNewQuiz(quizId)
         this.props.history.push(`/quizes-gen-list/${newUniqueId}`)
     }
@@ -47,7 +47,7 @@ class QuizesGenList extends React.Component {
     render() {
 
         const { listIsLoading } = this.state
-
+console.log(this.props.uniqueUserId)
         return <div>
             {listIsLoading ?
       <Dimmer active>
@@ -76,7 +76,7 @@ class QuizesGenList extends React.Component {
                             </li>
                         })}
                     </ul>
-                    <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1)}>NOWY QUIZ</button>
+                    <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1, this.state.uniqueUserId)}>NOWY QUIZ</button>
                     <ScrollUpButton />
                 </div>
              
