@@ -12,6 +12,7 @@ import {
   Redirect
 } from "react-router-dom";
 import QuizesGenList from './components/quizGenerator/QuizesGenList'
+import firebase from 'firebase'
 
 
 const NoMatch = () => <h1>404</h1>;
@@ -19,7 +20,7 @@ const NoMatch = () => <h1>404</h1>;
 class App extends Component {
 
   state = {
-    isLoggedIn: false,
+    isLoggedIn: firebase.auth().currentUser,
     uniqueId: '',
     userName: ''
   }

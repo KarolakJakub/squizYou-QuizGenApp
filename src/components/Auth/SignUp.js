@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { signUp } from '../../services/AuthService'
+import { signUp, signUpWithFirebase } from '../../services/AuthService'
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -43,18 +43,23 @@ export default function SignUp(props) {
     })
 
     function handleSignUp(event) {
+
         event.preventDefault()
-        if (state.email.includes('@') && state.email.includes('.') && state.name !== '' && state.password.length > 3) {
-            const uniqueId = signUp(state)
-            alert('Użytkownik został zarejestrowany i zalogowany.')
-            props.onLogin(uniqueId)
-        } else if (!state.email.includes('@') || !state.email.includes('.')) {
-            alert('Proszę podaj poprawny email.')
-        } else if (state.name === '') {
-            alert('Proszę podaj nazwę użytkownika.')
-        } else if (state.password.length <= 3) {
-            alert('Hasło musi mieć co najmniej 4 znaki.')
-        }
+        
+        signUpWithFirebase(state.email, state.password)
+
+        // event.preventDefault()
+        // if (state.email.includes('@') && state.email.includes('.') && state.name !== '' && state.password.length > 3) {
+        //     const uniqueId = signUp(state)
+        //     alert('Użytkownik został zarejestrowany i zalogowany.')
+        //     props.onLogin(uniqueId)
+        // } else if (!state.email.includes('@') || !state.email.includes('.')) {
+        //     alert('Proszę podaj poprawny email.')
+        // } else if (state.name === '') {
+        //     alert('Proszę podaj nazwę użytkownika.')
+        // } else if (state.password.length <= 3) {
+        //     alert('Hasło musi mieć co najmniej 4 znaki.')
+        // }
 
     }
 
@@ -70,20 +75,6 @@ export default function SignUp(props) {
             <div className={classes.paper}>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                autoComplete="fname"
-                                name="firstName"
-                                variant="outlined"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="Nazwa Użytkownika"
-                                autoFocus
-                                value={state.name}
-                                onChange={event => setState({ ...state, name: event.target.value })}
-                            />
-                        </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 variant="outlined"

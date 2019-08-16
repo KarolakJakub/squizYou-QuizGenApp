@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { signIn } from '../../services/AuthService';
+import { signIn, signInWithFirebase } from '../../services/AuthService';
 
 
 const useStyles = makeStyles(theme => ({
