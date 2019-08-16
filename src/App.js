@@ -62,7 +62,7 @@ class App extends Component {
             {/* {this.state.isLoggedIn ? 
               <> */}
             <Route exact path="/quizes-gen-list" render={(props) =>
-              <QuizesGenList  {...props} uniqueUserId={this.state.uniqueId}
+              <QuizesGenList  {...props} uniqueUserId={this.state.uniqueId} isLoggedIn={this.state.isLoggedIn}
               />} />
             <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
             <Route path="/quizlist" component={QuizList} />

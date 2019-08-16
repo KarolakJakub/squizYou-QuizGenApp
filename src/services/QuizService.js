@@ -22,7 +22,7 @@ export const addNewQuiz = (quizId, userId) => {
     const newQuestionCard =
     {
         "id": `${quizId}`,
-        "userId": `${userId}`,
+        "ownerUserId": `${userId}`,
         "title": "Nowy Quiz",
         "uniqueId": '',
         "questions": [

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { fetchQuiz, addNewQuiz, deleteQuiz } from '../../services/QuizService'
 import { BrowserRouter as Route, Link, Redirect, withRouter } from "react-router-dom";
 import { Dimmer, Loader, Button } from 'semantic-ui-react'
@@ -29,11 +28,11 @@ class QuizesGenList extends React.Component {
     }
 
     addNewQuizAndFollow(quizId, userId) {
-        if (userId === undefined) {
+        if (this.props.isLoggedIn === false) {
             alert('Musisz być zalogowany żeby tworzyć quizy.')
             return
         } else {
-            const newUniqueId = addNewQuiz(quizId)
+            const newUniqueId = addNewQuiz(quizId, userId)
             this.props.history.push(`/quizes-gen-list/${newUniqueId}`)
         }
     }
@@ -46,7 +45,6 @@ class QuizesGenList extends React.Component {
         this.setState({ ...this.state, quizes: newQuizes })
 
     }
-
 
 
     render() {
@@ -81,7 +79,7 @@ class QuizesGenList extends React.Component {
                             </li>
                         })}
                     </ul>
-                    <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1, this.state.uniqueUserId)}>NOWY QUIZ</button>
+                    <button className='addQuizButton' onClick={() => this.addNewQuizAndFollow(this.state.quizes.length + 1, this.props.uniqueUserId)}>NOWY QUIZ</button>
                     <ScrollUpButton />
                 </div>
 
