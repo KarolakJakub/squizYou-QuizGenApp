@@ -38,7 +38,7 @@ export const getUserNameByUniqueId = (uniqueId, callback) => {
 
 export const signUpWithFirebase = (email, password) => {
 
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+  return firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
 
     const errorCode = error.code
 
@@ -66,16 +66,6 @@ export const signUpWithFirebase = (email, password) => {
   }).then(checkCurrentUserWithAlerts())
 }
 
-export const signInWithFirebase = (email, password) => {
-
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
-  });
-
-}
 
 export const checkCurrentUserWithAlerts = () => {
   
@@ -84,3 +74,4 @@ export const checkCurrentUserWithAlerts = () => {
   currentUser === null ? alert('Użytkownik nie jest zalogowany.') : alert('Użytkownik zalogowany.')
 
 }
+

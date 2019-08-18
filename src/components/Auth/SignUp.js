@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {signUpWithFirebase, checkCurrentUser } from '../../services/AuthService'
+import { signUpWithFirebase, checkCurrentUser } from '../../services/AuthService'
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -35,6 +35,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props) {
 
+    const { onLogin} = props
+
     const [state, setState] = useState({
         name: '',
         email: '',
@@ -44,23 +46,10 @@ export default function SignUp(props) {
     function handleSignUp(event) {
 
         event.preventDefault()
-        
-        signUpWithFirebase(state.email, state.password)
 
+        signUpWithFirebase(state.email, state.password).then(onLogin())
 
-
-        // event.preventDefault()
-        // if (state.email.includes('@') && state.email.includes('.') && state.name !== '' && state.password.length > 3) {
-        //     const uniqueId = signUp(state)
-        //     alert('Użytkownik został zarejestrowany i zalogowany.')
-        //     props.onLogin(uniqueId)
-        // } else if (!state.email.includes('@') || !state.email.includes('.')) {
-        //     alert('Proszę podaj poprawny email.')
-        // } else if (state.name === '') {
-        //     alert('Proszę podaj nazwę użytkownika.')
-        // } else if (state.password.length <= 3) {
-        //     alert('Hasło musi mieć co najmniej 4 znaki.')
-        // }
+        // onLogin()
 
     }
 

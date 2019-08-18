@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Home.css';
-import { getUserByUniqueId } from './services/AuthService'
 import { } from '@material-ui/core/'
 import SignUp from '../src/components/Auth/SignUp'
 import SignIn from '../src/components/Auth/SignIn'
@@ -14,9 +13,10 @@ export default function Home(props) {
 
 
 
-  function onLoginFromHome(uniqueId) {
+  function onLoginFromHome() {
 
-    onLogin(uniqueId)
+    onLogin()
+    
   }
 
 

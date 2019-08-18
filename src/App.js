@@ -4,7 +4,6 @@ import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
 import Home from "./Home";
-import { getUserNameByUniqueId } from './services/AuthService'
 import {
   BrowserRouter as Router,
   Route,
@@ -26,17 +25,9 @@ class App extends Component {
   }
 
 
-  onLoginFromApp(uniqueId) {
+  onLoginFromApp() {
 
-    getUserNameByUniqueId(uniqueId, (userName => {
-
-
-      this.setState({
-        isLoggedIn: true,
-        uniqueId: uniqueId,
-        userName: userName
-      })
-    }))
+    firebase.auth().currentUser === null ? console.log('nie zalogowany') : this.setState({isLoggedIn: true})
 
   }
 
@@ -54,6 +45,7 @@ class App extends Component {
 
 
       <Router>
+        {console.log(this.state)}
         <div>
           <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)} />
           <Switch>
