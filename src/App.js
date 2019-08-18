@@ -4,7 +4,7 @@ import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
 import Home from "./Home";
-import { signOutWithFirebase} from './services/AuthService'
+import { signOutWithFirebase } from './services/AuthService'
 import {
   BrowserRouter as Router,
   Route,
@@ -25,10 +25,22 @@ class App extends Component {
     userName: ''
   }
 
+  componentDidMount() {
+
+    firebase.auth().onAuthStateChanged((user) => {
+
+      if(user){
+        this.setState({isLoggedIn: true})
+      }
+
+    })
+
+  }
+
   onLoginFromApp() {
 
 
-    firebase.auth().then(console.log('lol'))
+    console.log('lol')
 
     // () => (firebase.auth().currentUser === null || firebase.auth().currentUser === undefined) ? console.log('niezalogowany') : this.setState({ isLoggedIn: true })
 
@@ -36,8 +48,8 @@ class App extends Component {
 
   onLogout() {
 
-    signOutWithFirebase().then((firebase.auth().currentUser === null || firebase.auth().currentUser === undefined) ? null : this.setState({ isLoggedIn: false }))
-
+    signOutWithFirebase()
+    this.setState({isLoggedIn: false})
 
   }
 
@@ -54,15 +66,15 @@ class App extends Component {
             <Route exact path="/" render={(props) =>
               <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
             } />
-            {/* {this.state.isLoggedIn ? 
-              <> */}
+            {this.state.isLoggedIn ? 
+              <> 
             <Route exact path="/quizes-gen-list" render={(props) =>
               <QuizesGenList  {...props} uniqueUserId={this.state.uniqueId} isLoggedIn={this.state.isLoggedIn}
               />} />
             <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
             <Route path="/quizlist" component={QuizList} />
             <Route path="/quiz/:id" component={Quiz} />
-            {/* </>:null} */}
+            </>:null} }
             <Redirect from="/home" to="/" />
             <Route component={NoMatch} />
           </Switch>
