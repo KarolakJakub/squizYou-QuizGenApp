@@ -4,8 +4,7 @@ import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
 import Home from "./Home";
-import { QuizProvider } from "./contexts/QuizContext";
-import { getUserNameByUniqueId } from './services/AuthService'
+import { signOutWithFirebase} from './services/AuthService'
 import {
   BrowserRouter as Router,
   Route,
@@ -13,67 +12,63 @@ import {
   Redirect
 } from "react-router-dom";
 import QuizesGenList from './components/quizGenerator/QuizesGenList'
-// import LandingPage from "./components/LandingPage/LandingPage";
-// import LogoutButton from './components/Navbar/LogoutButton'
+import firebase from 'firebase'
+
 
 const NoMatch = () => <h1>404</h1>;
 
 class App extends Component {
 
   state = {
-    isLoggedIn: false,
+    isLoggedIn: null,
     uniqueId: '',
     userName: ''
   }
 
+  onLoginFromApp() {
 
-  onLoginFromApp(uniqueId) {
 
-    getUserNameByUniqueId(uniqueId, (userName => {
+    firebase.auth().then(console.log('lol'))
 
-    
-      this.setState({
-        isLoggedIn: true,
-        uniqueId: uniqueId,
-        userName: userName
-      })
-    }))
+    // () => (firebase.auth().currentUser === null || firebase.auth().currentUser === undefined) ? console.log('niezalogowany') : this.setState({ isLoggedIn: true })
 
   }
 
-  onLogout(){
-    this.setState({
-      isLoggedIn: false,
-      uniqueId: '',
-      userName: ''
-    })
+  onLogout() {
+
+    signOutWithFirebase().then((firebase.auth().currentUser === null || firebase.auth().currentUser === undefined) ? null : this.setState({ isLoggedIn: false }))
+
+
   }
 
   render() {
     return (
-      <QuizProvider>
 
- 
-        <Router>
-          <div>
-            <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)}/>
-            <Switch>
-              <Route exact path="/" render={(props) =>
-                <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
-              } />
-              {/* {this.state.isLoggedIn ? 
+
+
+      <Router>
+        {console.log(this.state)}
+        <div>
+          <NewNavbar isLoggedIn={this.state.isLoggedIn} onClickLogout={this.onLogout.bind(this)} />
+          <Switch>
+            <Route exact path="/" render={(props) =>
+              <Home {...props} isLoggedIn={this.state.isLoggedIn} onLogin={this.onLoginFromApp.bind(this)} userName={this.state.userName} />
+            } />
+            {/* {this.state.isLoggedIn ? 
               <> */}
-              <Route exact path="/quizes-gen-list" component={QuizesGenList} />
-              <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
-              <Route path="/quizlist" component={QuizList} />
-              <Route path="/quiz/:id" component={Quiz} />
-              {/* </>:null} */}
-              <Redirect from="/home" to="/" />
-              <Route component={NoMatch} />
-            </Switch>
-          </div>
-        </Router>
-      </QuizProvider>
+            <Route exact path="/quizes-gen-list" render={(props) =>
+              <QuizesGenList  {...props} uniqueUserId={this.state.uniqueId} isLoggedIn={this.state.isLoggedIn}
+              />} />
+            <Route exact path="/quizes-gen-list/:id" component={QuizGenWrapper} />
+            <Route path="/quizlist" component={QuizList} />
+            <Route path="/quiz/:id" component={Quiz} />
+            {/* </>:null} */}
+            <Redirect from="/home" to="/" />
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+      </Router>
+
     );
   }
 }

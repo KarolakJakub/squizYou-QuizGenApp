@@ -15,11 +15,14 @@ export const fetchQuiz = (callback) => {
     return quizRef
 }
 
-export const addNewQuiz = (quizId) => {
+export const addNewQuiz = (quizId, userId) => {
+
+
 
     const newQuestionCard =
     {
         "id": `${quizId}`,
+        "ownerUserId": `${userId}`,
         "title": "Nowy Quiz",
         "uniqueId": '',
         "questions": [
