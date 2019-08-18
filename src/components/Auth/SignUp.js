@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { signUp, signUpWithFirebase } from '../../services/AuthService'
+import {signUpWithFirebase, checkCurrentUser } from '../../services/AuthService'
 
 const useStyles = makeStyles(theme => ({
     '@global': {
@@ -47,6 +46,8 @@ export default function SignUp(props) {
         event.preventDefault()
         
         signUpWithFirebase(state.email, state.password)
+
+
 
         // event.preventDefault()
         // if (state.email.includes('@') && state.email.includes('.') && state.name !== '' && state.password.length > 3) {

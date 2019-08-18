@@ -28,28 +28,59 @@ export const signIn = (callback) => {
 
 export const getUserNameByUniqueId = (uniqueId, callback) => {
 
-  firebase.database().ref(`users/${uniqueId}/name`).once('value').then( userSnapshot =>
-    {
-      const userValue = userSnapshot.val()
+  firebase.database().ref(`users/${uniqueId}/name`).once('value').then(userSnapshot => {
+    const userValue = userSnapshot.val()
 
-      callback(userValue)
-    })
-    
+    callback(userValue)
+  })
+
 }
 
 export const signUpWithFirebase = (email, password) => {
 
-  firebase.auth().createUserWithEmailAndPassword(email, password)
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
 
+    const errorCode = error.code
+
+    switch (errorCode) {
+      case 'auth/email-already-in-use':
+        alert('Konto pod tym emailem już istneieje.')
+        break;
+
+      case 'auth/invalid-email':
+        alert('Nieprawidłowy adres email')
+        break;
+
+      case 'auth/operation-not-allowed':
+        alert('Nieprawidłowa operacja.')
+        break;
+
+      case 'auth/weak-password':
+        alert('Hasło jest za proste')
+        break;
+
+      default:
+        break;
+    }
+
+  }).then(checkCurrentUserWithAlerts())
 }
 
 export const signInWithFirebase = (email, password) => {
 
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
     // ...
   });
+
+}
+
+export const checkCurrentUserWithAlerts = () => {
   
+  const currentUser = firebase.auth().currentUser
+
+  currentUser === null ? alert('Użytkownik nie jest zalogowany.') : alert('Użytkownik zalogowany.')
+
 }
