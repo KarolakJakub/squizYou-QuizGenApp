@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { signIn, signInWithFirebase } from '../../services/AuthService';
+import { signInWithFirebase } from '../../services/AuthService';
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,6 +34,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignIn(props) {
+
+    const { onLogin} = props
+    
     const classes = useStyles();
 
     const [state, setState] = useState({
@@ -41,30 +44,11 @@ export default function SignIn(props) {
         password: ''
     })
 
-    function onClickSignIn(event, email, password) {
+    function handleSignIn(event) {
+
         event.preventDefault()
 
-
-        let userFound = false
-
-        signIn(users => {
-            users.forEach(user => {
-                if (user.email === email && user.password === password) {
-                    props.onLogin(user.uniqueId)
-                    userFound = true
-                    return alert("Użytkownik poprawnie zalogowany.")
-
-                } else {
-                    return
-                }
-            })
-            if(userFound === true) {
-                return
-            }else{
-                alert("Użytkownik nie istnieje")
-            }
-        })
-
+        signInWithFirebase(state.email, state.password).then(onLogin())
 
     }
 
@@ -113,7 +97,7 @@ export default function SignIn(props) {
                             color="primary"
 
                             className={classes.submit}
-                            onClick={event => onClickSignIn(event, state.email, state.password)}
+                            onClick={handleSignIn}
                         >
                             Zaloguj Się
           </Button>

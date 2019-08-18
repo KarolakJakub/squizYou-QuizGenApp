@@ -63,15 +63,50 @@ export const signUpWithFirebase = (email, password) => {
         break;
     }
 
-  }).then(checkCurrentUserWithAlerts())
+  })
 }
 
 
 export const checkCurrentUserWithAlerts = () => {
-  
+
   const currentUser = firebase.auth().currentUser
 
-  currentUser === null ? alert('Użytkownik nie jest zalogowany.') : alert('Użytkownik zalogowany.')
+  return currentUser === null ? null : alert('Użytkownik zalogowany.')
 
 }
 
+export const signInWithFirebase = (email, password) => {
+
+  return firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+
+    const errorCode = error.code
+
+    switch (errorCode) {
+      case 'auth/user-disabled':
+        alert('Użytkownik zablokowany.')
+        break;
+
+      case 'auth/invalid-email':
+        alert('Nieprawidłowy adres email')
+        break;
+
+      case 'auth/user-not-found':
+        alert('Użytkownik nie istnieje.')
+        break;
+
+      case 'auth/wrong-password':
+        alert('Złe hasło.')
+        break;
+
+      default:
+        break;
+    }
+
+  })
+}
+
+export const signOutWithFirebase = () => {
+
+  return firebase.auth().signOut()
+
+}

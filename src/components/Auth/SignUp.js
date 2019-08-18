@@ -49,8 +49,6 @@ export default function SignUp(props) {
 
         signUpWithFirebase(state.email, state.password).then(onLogin())
 
-        // onLogin()
-
     }
 
 

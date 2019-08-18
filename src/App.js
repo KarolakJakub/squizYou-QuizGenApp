@@ -4,6 +4,7 @@ import QuizGenWrapper from "./components/quizGenerator/QuizGenWrapper";
 import QuizList from "./components/Quiz/QuizList.js";
 import Quiz from "./components/Quiz/Quiz";
 import Home from "./Home";
+import { signOutWithFirebase} from './services/AuthService'
 import {
   BrowserRouter as Router,
   Route,
@@ -19,24 +20,25 @@ const NoMatch = () => <h1>404</h1>;
 class App extends Component {
 
   state = {
-    isLoggedIn: firebase.auth().currentUser,
+    isLoggedIn: null,
     uniqueId: '',
     userName: ''
   }
 
-
   onLoginFromApp() {
 
-    firebase.auth().currentUser === null ? console.log('nie zalogowany') : this.setState({isLoggedIn: true})
+
+    firebase.auth().then(console.log('lol'))
+
+    // () => (firebase.auth().currentUser === null || firebase.auth().currentUser === undefined) ? console.log('niezalogowany') : this.setState({ isLoggedIn: true })
 
   }
 
   onLogout() {
-    this.setState({
-      isLoggedIn: false,
-      uniqueId: '',
-      userName: ''
-    })
+
+    signOutWithFirebase().then((firebase.auth().currentUser === null || firebase.auth().currentUser === undefined) ? null : this.setState({ isLoggedIn: false }))
+
+
   }
 
   render() {
