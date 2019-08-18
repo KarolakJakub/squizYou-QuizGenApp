@@ -1,12 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, Container } from "semantic-ui-react";
-import logo from "./logo.png";
 import styles from "./Navbar.module.css";
-import { getThemeProps } from "@material-ui/styles";
+import {signOutWithFirebase, checkCurrentUserWithAlerts} from '../../services/AuthService'
+import firebase from 'firebase'
 
 
 const NewNavbar = (props) => {
+
+  const handleLogout = () => {
+    props.onClickLogout()
+  }
 
   return (
     <div className={styles.navbar}>
@@ -23,13 +27,13 @@ const NewNavbar = (props) => {
               <NavLink className={styles.navbarA} activeClassName={styles.activeLink} to="/quizlist">
                 <Menu.Item name="Twoje Quizy" />
               </NavLink>
-              <NavLink onClick={props.onClickLogout} className={styles.navbarA} to="/">
+              <NavLink onClick={handleLogout} className={styles.navbarA} to="/">
                 <Menu.Item name="Wyloguj" />
               </NavLink>
-              </>
-              : null
-           
-            }
+            </>
+            : null
+
+          }
         </Container>
       </Menu>
     </div>
